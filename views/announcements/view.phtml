@@ -1,0 +1,57 @@
+<?php
+/** @var \Phalcon\Mvc\View\Engine\Php $this */
+$severityBadge = ['important' => 'danger', 'notice' => 'warning', 'info' => 'secondary'];
+?>
+<div class="row mb-2">
+  <div class="col-12 d-flex justify-content-between align-items-start">
+    <div>
+      <h1><?= $this->escaper->escapeHtml($announcement->title) ?>
+        <span class="badge badge-<?= $severityBadge[$announcement->severity] ?? 'secondary' ?>"><?= $this->escaper->escapeHtml(\Announcement::SEVERITIES[$announcement->severity] ?? $announcement->severity) ?></span><span class="badge badge-light border ml-1"><?= $this->escaper->escapeHtml($announcement->audienceLabel()) ?></span>
+<?php if (!$announcement->isPublished()): ?>
+        <span class="badge badge-secondary">Draft</span>
+<?php elseif ($announcement->isExpired()): ?>
+        <span class="badge badge-dark">Expired</span>
+<?php endif; ?>
+      </h1>
+      <p class="text-muted small mb-0">
+<?php if ($announcement->Author): ?>
+        By <?= $this->escaper->escapeHtml($announcement->Author->email) ?> —
+<?php endif; ?>
+        Created <?= $this->escaper->escapeHtml((string) $announcement->created_at) ?>
+<?php if ($announcement->published_at): ?>
+        · Published <?= $this->escaper->escapeHtml((string) $announcement->published_at) ?>
+<?php endif; ?>
+<?php if ($announcement->expires_at): ?>
+        · Expires <?= $this->escaper->escapeHtml((string) $announcement->expires_at) ?>
+<?php endif; ?>
+<?php if ($announcement->source): ?>
+        · Source <?= $this->escaper->escapeHtml((string) $announcement->source) ?><?php if ($announcement->source_url): ?> (<a href="<?= $this->escaper->escapeHtmlAttr((string) $announcement->source_url) ?>" rel="noopener noreferrer" target="_blank">provider page</a>)<?php endif; ?>
+<?php endif; ?>
+      </p>
+    </div>
+    <div>
+<?php if ($isAdmin): ?>
+<?php if (!$announcement->isPublished()): ?>
+      <form method="post" action="<?= $this->url->get('announcements/announcements/publish/' . $announcement->id) ?>" style="display:inline;">
+        <button type="submit" class="btn btn-success">Publish</button>
+      </form>
+<?php endif; ?>
+      <a href="<?= $this->url->get('announcements/announcements/edit/' . $announcement->id) ?>" class="btn btn-outline-secondary">Edit</a>
+      <form method="post" action="<?= $this->url->get('announcements/announcements/delete/' . $announcement->id) ?>" style="display:inline;">
+        <button type="submit" class="btn btn-outline-danger" data-confirm="Delete this announcement?">Delete</button>
+      </form>
+<?php endif; ?>
+      <a href="<?= $this->url->get('announcements/announcements/history') ?>" class="btn btn-link">Back to history</a>
+    </div>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-12">
+    <div class="card">
+      <div class="card-body">
+        <?= $announcement->renderedBodyHtml() ?>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  Pure-PHP suite: no Docker stack needed. From any checkout with a
+  PHPUnit 10 binary, e.g. app_skeleton's:
+
+    <app_skeleton>/vendor/bin/phpunit -c <plugins>/announcements/phpunit.unit.xml
+
+  The stack-backed HTTP suite is phpunit.xml (see tests/bootstrap.php).
+-->
+<phpunit xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:noNamespaceSchemaLocation="../../phpunit/phpunit/phpunit.xsd"
+         bootstrap="tests/unit-bootstrap.php"
+         colors="true">
+  <testsuites>
+    <testsuite name="Announcements unit">
+      <directory>tests/Unit</directory>
+    </testsuite>
+  </testsuites>
+</phpunit>

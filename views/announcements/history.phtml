@@ -1,0 +1,133 @@
+<?php
+/** @var \Phalcon\Mvc\View\Engine\Php $this */
+$baseUrl = $this->url->get('announcements/announcements/history');
+/** @var bool $isAdmin set by AnnouncementsController::historyAction() */
+$severityBadge = ['important' => 'danger', 'notice' => 'warning', 'info' => 'secondary'];
+?>
+<div class="row mb-2">
+  <div class="col-12 d-flex justify-content-between align-items-center">
+    <h1>Announcements — full history</h1>
+    <div>
+<?php if ($isAdmin): ?>
+      <a href="<?= $this->url->get('announcements/announcements/new') ?>" class="btn btn-primary">New announcement</a>
+<?php endif; ?>
+      <a href="<?= $this->url->get('announcements/announcements') ?>" class="btn btn-outline-secondary">Back to feed</a>
+    </div>
+  </div>
+</div>
+
+<div class="row mb-2">
+  <div class="col-12 d-flex flex-wrap align-items-center" style="gap: 0.5rem;">
+    <?= \App_skeleton\ListView::searchForm($baseUrl, $listState['q'], $preserveQuery, 'Search title/body…') ?>
+    <form method="get" action="<?= $baseUrl ?>" class="form-inline" style="gap: 0.5rem;">
+<?php foreach ($preserveQuery as $key => $value): ?>
+<?php if (!in_array($key, ['severity', 'date_from', 'date_to'], true)): ?>
+      <input type="hidden" name="<?= $this->escaper->escapeHtmlAttr($key) ?>" value="<?= $this->escaper->escapeHtmlAttr((string) $value) ?>">
+<?php endif; ?>
+<?php endforeach; ?>
+      <select name="severity" class="form-control form-control-sm mr-2">
+        <option value="">All severities</option>
+<?php foreach (\Announcement::SEVERITIES as $value => $label): ?>
+        <option value="<?= $value ?>" <?= $currentSeverity === $value ? 'selected' : '' ?>><?= $label ?></option>
+<?php endforeach; ?>
+      </select>
+      <label class="small mb-0 mr-1">From</label>
+      <input type="date" name="date_from" class="form-control form-control-sm mr-2" value="<?= $this->escaper->escapeHtmlAttr($currentDateFrom) ?>">
+      <label class="small mb-0 mr-1">To</label>
+      <input type="date" name="date_to" class="form-control form-control-sm mr-2" value="<?= $this->escaper->escapeHtmlAttr($currentDateTo) ?>">
+      <button type="submit" class="btn btn-sm btn-outline-secondary">Filter</button>
+    </form>
+  </div>
+</div>
+
+<form method="post" action="<?= $this->url->get('announcements/announcements/bulk') ?>" id="announcements-bulk-form">
+<?php if ($isAdmin): ?>
+  <div class="row mb-2">
+    <div class="col-12 d-flex align-items-center" style="gap: 0.5rem;">
+      <div class="dropdown">
+        <button class="btn btn-sm btn-outline-secondary dropdown-toggle" type="button" id="bulk-dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
+          With selected
+        </button>
+        <div class="dropdown-menu p-3 shadow" style="min-width: 240px;" aria-labelledby="bulk-dropdown-toggle">
+          <button type="submit" name="bulk_action" value="delete" class="btn btn-sm btn-outline-danger btn-block" data-confirm="Delete the selected announcement(s)? This cannot be undone from here.">Delete selected</button>
+        </div>
+      </div>
+      <span class="text-muted small" id="bulk-selected-count">0 selected</span>
+    </div>
+  </div>
+<?php endif; ?>
+
+  <div class="row">
+    <div class="col-12">
+      <div class="card">
+        <div class="card-body p-0">
+          <div class="table-responsive">
+          <table class="table table-striped mb-0">
+            <thead>
+              <tr>
+<?php if ($isAdmin): ?>
+                <th style="width: 2.5rem;"><input type="checkbox" id="bulk-select-all" aria-label="Select all announcements"></th>
+<?php endif; ?>
+                <th>#</th>
+                <th><?= \App_skeleton\ListView::sortLink($baseUrl, 'Title', 'title', $listState['sort'], $listState['dir'], $preserveQuery) ?></th>
+                <th><?= \App_skeleton\ListView::sortLink($baseUrl, 'Severity', 'severity', $listState['sort'], $listState['dir'], $preserveQuery) ?></th>
+                <th>Audience</th>
+                <th>Status</th>
+                <th><?= \App_skeleton\ListView::sortLink($baseUrl, 'Published', 'published', $listState['sort'], $listState['dir'], $preserveQuery) ?></th>
+                <th>Expires</th>
+                <th></th>
+              </tr>
+            </thead>
+            <tbody>
+<?php foreach ($announcements as $announcement): ?>
+              <tr>
+<?php if ($isAdmin): ?>
+                <td><input type="checkbox" class="bulk-row-checkbox" name="announcement_ids[]" value="<?= $announcement->id ?>" aria-label="Select announcement #<?= $announcement->id ?>"></td>
+<?php endif; ?>
+                <td><?= $announcement->id ?></td>
+                <td><?= $this->escaper->escapeHtml($announcement->title) ?></td>
+                <td><span class="badge badge-<?= $severityBadge[$announcement->severity] ?? 'secondary' ?>"><?= $this->escaper->escapeHtml(\Announcement::SEVERITIES[$announcement->severity] ?? $announcement->severity) ?></span></td>
+                <td><?= $this->escaper->escapeHtml($announcement->audienceLabel()) ?></td>
+                <td>
+<?php if (!$announcement->isPublished()): ?>
+                  <span class="badge badge-secondary">Draft</span>
+<?php elseif ($announcement->isExpired()): ?>
+                  <span class="badge badge-dark">Expired</span>
+<?php else: ?>
+                  <span class="badge badge-success">Published</span>
+<?php endif; ?>
+                </td>
+                <td><?= $this->escaper->escapeHtml((string) ($announcement->published_at ?: '—')) ?></td>
+                <td><?= $this->escaper->escapeHtml((string) ($announcement->expires_at ?: '—')) ?></td>
+                <td class="text-right">
+                  <a href="<?= $this->url->get('announcements/announcements/view/' . $announcement->id) ?>" class="btn btn-sm btn-outline-secondary">View</a>
+<?php if ($isAdmin): ?>
+                  <a href="<?= $this->url->get('announcements/announcements/edit/' . $announcement->id) ?>" class="btn btn-sm btn-outline-secondary">Edit</a>
+                  <button type="submit" formaction="<?= $this->url->get('announcements/announcements/delete/' . $announcement->id) ?>" class="btn btn-sm btn-outline-danger" data-confirm="Delete announcement #<?= $announcement->id ?>?">Delete</button>
+<?php endif; ?>
+                </td>
+              </tr>
+<?php endforeach; ?>
+<?php if (!count($announcements)): ?>
+              <tr>
+                <td colspan="9" class="text-center text-muted">No announcements match this filter.</td>
+              </tr>
+<?php endif; ?>
+            </tbody>
+          </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="row mt-2">
+    <div class="col-12 d-flex justify-content-between align-items-center">
+      <span class="text-muted small"><?= $listState['total'] ?> announcement<?= $listState['total'] === 1 ? '' : 's' ?></span>
+      <?= \App_skeleton\ListView::pagination($baseUrl, $listState['page'], $listState['totalPages'], $preserveQuery) ?>
+    </div>
+  </div>
+</form>
+
+<?php if ($isAdmin): ?>
+<script src="/assets/js/bulk-select.js"></script>
+<?php endif; ?>

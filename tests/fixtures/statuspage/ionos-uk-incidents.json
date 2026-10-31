@@ -1,0 +1,205 @@
+{
+  "page": {
+    "id": "rjbyr778yzq6",
+    "name": "ionos.co.uk",
+    "url": "https://www.ionos-status.co.uk",
+    "time_zone": "Europe/London",
+    "updated_at": "2026-09-25T01:34:16.031+01:00"
+  },
+  "incidents": [
+    {
+      "id": "dc2csqp7sfsc",
+      "name": "Critical Security Update: WordPress Core Vulnerability (CVE-2026-87902)",
+      "status": "identified",
+      "created_at": "2026-09-22T22:36:46.702+01:00",
+      "updated_at": "2026-09-22T22:36:46.808+01:00",
+      "monitoring_at": null,
+      "resolved_at": null,
+      "impact": "minor",
+      "shortlink": "https://stspg.io/cvqfltlcw64l",
+      "started_at": "2026-09-22T22:36:46.690+01:00",
+      "page_id": "rjbyr778yzq6",
+      "incident_updates": [
+        {
+          "id": "kcljzlq1tlg0",
+          "status": "identified",
+          "body": "A critical security vulnerability affects WordPress versions 4.7.0 through 7.1.1, which can allow remote code execution under specific conditions.\n\nManaged WordPress Customers\nNo action needed:IONOS is automatically patching your site and deploying proactive security measures\n\nSelf-Managed WordPress Customers\nAction required: Update WordPress immediately to the latest version \n\nMore updates will be posted here as new information becomes available.",
+          "incident_id": "dc2csqp7sfsc",
+          "created_at": "2026-09-22T22:36:46.805+01:00",
+          "updated_at": "2026-09-22T22:36:46.805+01:00",
+          "display_at": "2026-09-22T22:36:46.805+01:00",
+          "affected_components": [
+            {
+              "code": "6whlgy21fs3m",
+              "name": "Hosting - Wordpress Hosting",
+              "old_status": "operational",
+              "new_status": "degraded_performance"
+            },
+            {
+              "code": "4y146hs97wzn",
+              "name": "Hosting - Wordpress Pro",
+              "old_status": "operational",
+              "new_status": "degraded_performance"
+            }
+          ],
+          "deliver_notifications": true,
+          "custom_tweet": null,
+          "tweet_id": null
+        }
+      ],
+      "components": [
+        {
+          "id": "6whlgy21fs3m",
+          "name": "Wordpress Hosting",
+          "status": "degraded_performance",
+          "created_at": "2024-03-27T08:18:20.107+00:00",
+          "updated_at": "2026-09-22T22:36:46.740+01:00",
+          "position": 3,
+          "description": null,
+          "showcase": false,
+          "start_date": "2024-03-26",
+          "group_id": "lp7ykbszlxxy",
+          "page_id": "rjbyr778yzq6",
+          "group": false,
+          "only_show_if_degraded": false
+        },
+        {
+          "id": "4y146hs97wzn",
+          "name": "Wordpress Pro",
+          "status": "degraded_performance",
+          "created_at": "2021-09-28T11:01:11.193+01:00",
+          "updated_at": "2026-09-22T22:36:46.757+01:00",
+          "position": 4,
+          "description": null,
+          "showcase": false,
+          "start_date": "2021-09-27",
+          "group_id": "lp7ykbszlxxy",
+          "page_id": "rjbyr778yzq6",
+          "group": false,
+          "only_show_if_degraded": false
+        }
+      ],
+      "reminder_intervals": null
+    },
+    {
+      "id": "nht6wrmm6txk",
+      "name": "Sending emails may be delayed",
+      "status": "resolved",
+      "created_at": "2026-08-31T13:27:52.991+01:00",
+      "updated_at": "2026-08-31T16:30:26.413+01:00",
+      "monitoring_at": null,
+      "resolved_at": "2026-08-31T16:30:26.397+01:00",
+      "impact": "minor",
+      "shortlink": "https://stspg.io/8gzm1zdcfptt",
+      "started_at": "2026-08-31T13:27:52.982+01:00",
+      "page_id": "rjbyr778yzq6",
+      "incident_updates": [
+        {
+          "id": "txkspc1cc1ms",
+          "status": "resolved",
+          "body": "The issue has been resolved.",
+          "incident_id": "nht6wrmm6txk",
+          "created_at": "2026-08-31T16:30:26.397+01:00",
+          "updated_at": "2026-08-31T16:30:26.397+01:00",
+          "display_at": "2026-08-31T16:30:26.397+01:00",
+          "affected_components": [
+            {
+              "code": "8jr6qc0j2w00",
+              "name": "Email - Microsoft Exchange",
+              "old_status": "degraded_performance",
+              "new_status": "operational"
+            },
+            {
+              "code": "bv4tztbd77r1",
+              "name": "Email - Sending Emails",
+              "old_status": "degraded_performance",
+              "new_status": "operational"
+            }
+          ],
+          "deliver_notifications": true,
+          "custom_tweet": null,
+          "tweet_id": null
+        },
+        {
+          "id": "yqk4wkqybpwz",
+          "status": "identified",
+          "body": "We are currently working on resolving the technical disruption. We will have an update for you shortly.",
+          "incident_id": "nht6wrmm6txk",
+          "created_at": "2026-08-31T13:31:52.238+01:00",
+          "updated_at": "2026-08-31T13:31:52.238+01:00",
+          "display_at": "2026-08-31T13:31:52.238+01:00",
+          "affected_components": [
+            {
+              "code": "8jr6qc0j2w00",
+              "name": "Email - Microsoft Exchange",
+              "old_status": "operational",
+              "new_status": "degraded_performance"
+            },
+            {
+              "code": "bv4tztbd77r1",
+              "name": "Email - Sending Emails",
+              "old_status": "degraded_performance",
+              "new_status": "degraded_performance"
+            }
+          ],
+          "deliver_notifications": true,
+          "custom_tweet": null,
+          "tweet_id": null
+        },
+        {
+          "id": "lbqy5xbs6fjj",
+          "status": "identified",
+          "body": "Some customers may be experiencing technical delays when sending E-mails.",
+          "incident_id": "nht6wrmm6txk",
+          "created_at": "2026-08-31T13:27:53.058+01:00",
+          "updated_at": "2026-08-31T13:27:53.058+01:00",
+          "display_at": "2026-08-31T13:27:53.058+01:00",
+          "affected_components": [
+            {
+              "code": "bv4tztbd77r1",
+              "name": "Email - Sending Emails",
+              "old_status": "operational",
+              "new_status": "degraded_performance"
+            }
+          ],
+          "deliver_notifications": true,
+          "custom_tweet": null,
+          "tweet_id": null
+        }
+      ],
+      "components": [
+        {
+          "id": "8jr6qc0j2w00",
+          "name": "Microsoft Exchange",
+          "status": "operational",
+          "created_at": "2019-03-29T08:55:40.852+00:00",
+          "updated_at": "2026-08-31T16:30:26.354+01:00",
+          "position": 2,
+          "description": null,
+          "showcase": false,
+          "start_date": null,
+          "group_id": "2mtw09672khk",
+          "page_id": "rjbyr778yzq6",
+          "group": false,
+          "only_show_if_degraded": false
+        },
+        {
+          "id": "bv4tztbd77r1",
+          "name": "Sending Emails",
+          "status": "operational",
+          "created_at": "2018-10-11T09:14:32.999+01:00",
+          "updated_at": "2026-08-31T16:30:26.368+01:00",
+          "position": 4,
+          "description": null,
+          "showcase": false,
+          "start_date": null,
+          "group_id": "2mtw09672khk",
+          "page_id": "rjbyr778yzq6",
+          "group": false,
+          "only_show_if_degraded": false
+        }
+      ],
+      "reminder_intervals": null
+    }
+  ]
+}

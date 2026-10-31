@@ -1,0 +1,39 @@
+<?php
+/** @var \Phalcon\Mvc\View\Engine\Php $this */
+$historyUrl = $this->url->get('announcements/announcements/history');
+/** @var bool $isAdmin set by AnnouncementsController::indexAction() */
+$severityBadge = ['important' => 'danger', 'notice' => 'warning', 'info' => 'secondary'];
+?>
+<div class="row mb-2">
+  <div class="col-12 d-flex justify-content-between align-items-center">
+    <h1>Announcements</h1>
+    <div>
+<?php if ($isAdmin): ?>
+      <a href="<?= $this->url->get('announcements/announcements/new') ?>" class="btn btn-primary">New announcement</a>
+<?php endif; ?>
+      <a href="<?= $historyUrl ?>" class="btn btn-outline-secondary">Full history</a>
+    </div>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-12">
+<?php foreach ($announcements as $announcement): ?>
+    <div class="card mb-2">
+      <div class="card-body">
+        <div class="d-flex justify-content-between align-items-start">
+          <h5 class="card-title mb-1">
+            <a href="<?= $this->url->get('announcements/announcements/view/' . $announcement->id) ?>"><?= $this->escaper->escapeHtml($announcement->title) ?></a>
+          </h5>
+          <span class="badge badge-<?= $severityBadge[$announcement->severity] ?? 'secondary' ?>"><?= $this->escaper->escapeHtml(\Announcement::SEVERITIES[$announcement->severity] ?? $announcement->severity) ?></span><span class="badge badge-light border ml-1"><?= $this->escaper->escapeHtml($announcement->audienceLabel()) ?></span>
+        </div>
+        <p class="text-muted small mb-1">Published <?= $this->escaper->escapeHtml((string) $announcement->published_at) ?></p>
+        <div><?= $announcement->renderedBodyHtml() ?></div>
+      </div>
+    </div>
+<?php endforeach; ?>
+<?php if (!count($announcements)): ?>
+    <div class="text-center text-muted py-4">No current announcements.</div>
+<?php endif; ?>
+  </div>
+</div>

@@ -1,0 +1,472 @@
+{
+  "page": {
+    "id": "w4cz49tckxhp",
+    "name": "DigitalOcean",
+    "url": "http://status.digitalocean.com",
+    "time_zone": "Etc/UTC",
+    "updated_at": "2026-09-23T22:33:02.309Z"
+  },
+  "incidents": [
+    {
+      "id": "grb2v0td1nq5",
+      "name": "Support Portal Service Disruption",
+      "status": "resolved",
+      "created_at": "2026-09-16T09:48:19.081Z",
+      "updated_at": "2026-09-16T21:09:31.524Z",
+      "monitoring_at": "2026-09-16T14:07:22.697Z",
+      "resolved_at": "2026-09-16T21:09:31.508Z",
+      "impact": "minor",
+      "shortlink": "https://stspg.io/n6hr8jd64qjl",
+      "started_at": "2026-09-16T09:48:19.073Z",
+      "page_id": "w4cz49tckxhp",
+      "incident_updates": [
+        {
+          "id": "547yr1cm4z2z",
+          "status": "resolved",
+          "body": "From 08:06 UTC to 13:41 UTC, users may have experienced issues accessing the Support Portal, creating new support tickets, or reviewing existing support requests. \n\nOur Engineering team has confirmed the full resolution of the issue affecting the Support Portal following a fix from our upstream provider. We have verified that the Support Portal, ticket creation, and ticket review are now operating normally.\n\nIf you continue to experience problems, please open a ticket with our support team. We apologize for any inconvenience and appreciate your patience.",
+          "incident_id": "grb2v0td1nq5",
+          "created_at": "2026-09-16T21:09:31.508Z",
+          "updated_at": "2026-09-16T21:09:31.508Z",
+          "display_at": "2026-09-16T21:09:31.508Z",
+          "affected_components": [
+            {
+              "code": "hklgsphcrjq4",
+              "name": "Support Center",
+              "old_status": "degraded_performance",
+              "new_status": "operational"
+            }
+          ],
+          "deliver_notifications": true,
+          "custom_tweet": null,
+          "tweet_id": null
+        },
+        {
+          "id": "ldwbdz86z64w",
+          "status": "monitoring",
+          "body": "The Support Portal and ticket creation are now accessible. Our upstream provider has applied a fix, and we've verified ticket creation and review are working as expected. We'll continue monitoring for the next 2 hours to confirm full stability and will post a final update once the incident is closed. If you're still unable to access the portal, please use our Support Contact form as a backup: https://www.digitalocean.com/company/contact/support\nWe apologize for the disruption and appreciate your patience.",
+          "incident_id": "grb2v0td1nq5",
+          "created_at": "2026-09-16T14:07:22.697Z",
+          "updated_at": "2026-09-16T14:07:22.697Z",
+          "display_at": "2026-09-16T14:07:22.697Z",
+          "affected_components": [
+            {
+              "code": "hklgsphcrjq4",
+              "name": "Support Center",
+              "old_status": "degraded_performance",
+              "new_status": "degraded_performance"
+            }
+          ],
+          "deliver_notifications": true,
+          "custom_tweet": null,
+          "tweet_id": null
+        },
+        {
+          "id": "68pdwfsqxmqp",
+          "status": "investigating",
+          "body": "Our Support Portal is currently experiencing issues due to a third-party service disruption impacting our systems. During this time, customers may be unable to access the Support Portal or create new support tickets for their concerns. Existing support requests may also experience delayed responses from our Support team.\n\nAs a workaround if you're unable to access the Support Portal or need to create a new support ticket, please submit your request via Support Contact form: https://www.digitalocean.com/company/contact/support.\n\nWe apologize for the inconvenience and appreciate your patience while we work to resolve the issue. We'll provide another update as soon as we have more information.",
+          "incident_id": "grb2v0td1nq5",
+          "created_at": "2026-09-16T09:48:19.170Z",
+          "updated_at": "2026-09-16T09:48:19.170Z",
+          "display_at": "2026-09-16T09:48:19.170Z",
+          "affected_components": [
+            {
+              "code": "hklgsphcrjq4",
+              "name": "Support Center",
+              "old_status": "operational",
+              "new_status": "degraded_performance"
+            }
+          ],
+          "deliver_notifications": true,
+          "custom_tweet": null,
+          "tweet_id": null
+        }
+      ],
+      "components": [
+        {
+          "id": "hklgsphcrjq4",
+          "name": "Support Center",
+          "status": "operational",
+          "created_at": "2023-03-06T18:42:44.830Z",
+          "updated_at": "2026-09-16T21:09:31.466Z",
+          "position": 8,
+          "description": null,
+          "showcase": false,
+          "start_date": "2023-03-06",
+          "group_id": null,
+          "page_id": "w4cz49tckxhp",
+          "group": false,
+          "only_show_if_degraded": false
+        }
+      ],
+      "reminder_intervals": null
+    },
+    {
+      "id": "4qwm6pzlx1z3",
+      "name": "Cloud Control Panel and API",
+      "status": "postmortem",
+      "created_at": "2026-08-24T17:14:43.701Z",
+      "updated_at": "2026-09-15T19:11:53.801Z",
+      "monitoring_at": "2026-08-24T19:14:18.846Z",
+      "resolved_at": "2026-08-25T19:04:33.091Z",
+      "impact": "critical",
+      "shortlink": "https://stspg.io/8l5c24cxh3hr",
+      "started_at": "2026-08-24T17:14:43.692Z",
+      "page_id": "w4cz49tckxhp",
+      "incident_updates": [
+        {
+          "id": "2sv33jgdp5b9",
+          "status": "postmortem",
+          "body": "## 1. What happened\n\nBetween 16:56 UTC and 23:09 UTC on August 24, 2026, customers using DigitalOcean’s Cloud Control Panel, Public API, and dependent product management systems experienced elevated request error rates, peaking at 25%, in two distinct windows totaling 3.5 hours of active degradation within a 6-hour span. Running Droplets, network routing, and block storage \\(Volumes\\) remained fully functional and unaffected throughout the event. No customer data loss occurred.\n\nThe event was initiated during a planned infrastructure migration of the database layer supporting identity, authentication, and authorization services. The migration introduced increased execution latency for a critical authorization query. In response to the elevated query latency, multiple upstream services initiated automated hedged retries. This secondary request amplification led to queue buildup in excess of the authentication service pool's processing throughput, resulting in cascading request timeouts across the authorization path.\n\nTo mitigate the initial degradation, engineering teams rerouted authorization traffic onto a single healthy processing path and temporarily disabled hedging for primary callers, successfully restoring service availability. However, upon returning traffic to the standard multipath routing configuration, lingering query latency combined with retry behavior from unhedged callers caused recurrent queue saturation, leading to the second window of degradation.\n\n## 2. Impact\n\n* Active customer accounts \\(<2%\\) experienced one or more API or Control Panel request failures during the event windows.\n* Aggregate failure rates across both impact windows averaged approximately 10% of authenticated requests, with a peak error rate of 25% during the second window.\n* Affected management control planes included the Cloud Control Panel, Public API, Kubernetes cluster authentication, Container Registry, and Serverless / AI Inference endpoints.\n* Data plane components—including active Droplets, network routing, and block storage volumes—maintained 100% availability, as established connections do not depend on the affected authorization control path. There was zero data loss.\n\n## 3. Current state\n\nAll impacted control plane services have been restored to nominal operational capacity. The database infrastructure migration has been completed. Remediation controls have been validated to ensure system stability against similar query latency scenarios.\n\n## 4. Preventing recurrence\n\nTo prevent future occurrences and enhance systemic resilience, DigitalOcean has implemented the following technical enhancements:\n\n1. Automated Request Throttling and Circuit Breaking:\n\nDeployed automated circuit breakers across upstream services to detect downstream dependency degradation and automatically suppress hedged/retry amplification. Completed a broad architecture audit to ensure retry suppression and circuit breaking are uniformly enforced across all control plane services.\n\n1. Queue Management and Load Shedding:\n\nImplemented fast-fail load-shedding mechanisms to prevent request queue saturation during dependency slowness, accompanied by proactive telemetry alerts to identify queue backing prior to customer impact.\n\n1. Graceful Service Degradation:\n\nConfigured critical authorization components to operate in degraded execution modes utilizing asynchronous, eventually-consistent data replicas during primary database latency events.\n\n## 5. Timeline\n\n| **Time UTC** | **Event** |\n| --- | --- |\n| 16:56 | A specific authorization query began running significantly slower than its historical baseline. |\n| 16:58 | Automated monitoring detected abnormal error rates and latency; detected within 5 minutes of impact starting. |\n| 17:05–18:52 | Operators tuned retry configuration and consolidated requests to a healthy service instance \\(first unavailability window closed\\). |\n| 21:30 | Shifting traffic back to the production pattern caused the same saturation problem \\(second unavailability window begins\\). |\n| 21:30–23:09 | Teams disabled the retry/amplification behavior across the remaining affected services and added additional read capacity for the slow query. Service was restored to a stable state. |",
+          "incident_id": "4qwm6pzlx1z3",
+          "created_at": "2026-09-15T18:44:45.445Z",
+          "updated_at": "2026-09-15T19:11:53.799Z",
+          "display_at": null,
+          "affected_components": null,
+          "deliver_notifications": true,
+          "custom_tweet": "We published a postmortem on our August 24th incident: https://stspg.io/8l5c24cxh3hr",
+          "tweet_id": null
+        },
+        {
+          "id": "f6xhyxkkxynp",
+          "status": "resolved",
+          "body": "Our Engineering team has confirmed all services remain stable and we will now resolve this incident. Further details on root cause and mitigation will be provided in a postmortem via this status page for users interested in learning more. \n\nThank you for your patience throughout this incident. If you continue to experience any issues, please reach out to Support from within your account",
+          "incident_id": "4qwm6pzlx1z3",
+          "created_at": "2026-08-25T19:04:33.091Z",
+          "updated_at": "2026-08-25T19:04:33.091Z",
+          "display_at": "2026-08-25T19:04:33.091Z",
+          "affected_components": [
+            {
+              "code": "p1x9rv4137gx",
+              "name": "API",
+              "old_status": "operational",
+              "new_status": "operational"
+            },
+            {
+              "code": "czck17wcspr5",
+              "name": "Cloud Control Panel",
+              "old_status": "operational",
+              "new_status": "operational"
+            }
+          ],
+          "deliver_notifications": true,
+          "custom_tweet": null,
+          "tweet_id": null
+        },
+        {
+          "id": "99msd8qh1vyf",
+          "status": "monitoring",
+          "body": "Our Engineering team has continued to monitor the health of all services and has observed no recurrence of impact over the past 12+ hours. We will continue to monitor services for a short period to confirm stability before we mark this incident resolved. We understand the impact this incident had for DigitalOcean users and we will publish a postmortem on the status page to provide further details on root cause and mitigation.",
+          "incident_id": "4qwm6pzlx1z3",
+          "created_at": "2026-08-25T16:30:28.336Z",
+          "updated_at": "2026-08-25T16:30:28.336Z",
+          "display_at": "2026-08-25T16:30:28.336Z",
+          "affected_components": [
+            {
+              "code": "p1x9rv4137gx",
+              "name": "API",
+              "old_status": "operational",
+              "new_status": "operational"
+            },
+            {
+              "code": "czck17wcspr5",
+              "name": "Cloud Control Panel",
+              "old_status": "operational",
+              "new_status": "operational"
+            }
+          ],
+          "deliver_notifications": true,
+          "custom_tweet": null,
+          "tweet_id": null
+        }
+      ],
+      "components": [
+        {
+          "id": "p1x9rv4137gx",
+          "name": "API",
+          "status": "operational",
+          "created_at": "2023-03-06T18:42:45.160Z",
+          "updated_at": "2026-08-25T00:54:37.309Z",
+          "position": 1,
+          "description": null,
+          "showcase": false,
+          "start_date": "2023-03-06",
+          "group_id": null,
+          "page_id": "w4cz49tckxhp",
+          "group": false,
+          "only_show_if_degraded": false
+        },
+        {
+          "id": "czck17wcspr5",
+          "name": "Cloud Control Panel",
+          "status": "operational",
+          "created_at": "2023-03-06T18:42:46.098Z",
+          "updated_at": "2026-08-25T00:54:37.328Z",
+          "position": 4,
+          "description": null,
+          "showcase": false,
+          "start_date": "2023-03-06",
+          "group_id": null,
+          "page_id": "w4cz49tckxhp",
+          "group": false,
+          "only_show_if_degraded": false
+        }
+      ],
+      "reminder_intervals": null
+    },
+    {
+      "id": "84v7d9gkkzzf",
+      "name": "Block Storage Volume NYC1, NYC3, SGP1, SYD1 and BLR1",
+      "status": "resolved",
+      "created_at": "2026-07-19T09:51:19.000Z",
+      "updated_at": "2026-07-19T15:32:39.594Z",
+      "monitoring_at": "2026-07-19T14:52:16.246Z",
+      "resolved_at": "2026-07-19T15:32:39.578Z",
+      "impact": "minor",
+      "shortlink": "https://stspg.io/wv68wmnz55ln",
+      "started_at": "2026-07-19T09:51:19.000Z",
+      "page_id": "w4cz49tckxhp",
+      "incident_updates": [
+        {
+          "id": "t7bw9dsghhzr",
+          "status": "resolved",
+          "body": "Our Engineering team has confirmed that the issue regarding volume attachment to Droplets in the NYC1, NYC3, SGP1, SYD1, and BLR1 regions has been fully resolved, and all services are now operating normally.\n\nIf you continue to experience any issues, please contact our Support team by opening a ticket. We apologize for any inconvenience caused.",
+          "incident_id": "84v7d9gkkzzf",
+          "created_at": "2026-07-19T15:32:39.578Z",
+          "updated_at": "2026-07-19T15:32:39.578Z",
+          "display_at": "2026-07-19T15:32:39.578Z",
+          "affected_components": [
+            {
+              "code": "6xz356g340vj",
+              "name": "Volumes - BLR1",
+              "old_status": "operational",
+              "new_status": "operational"
+            },
+            {
+              "code": "p4l05gv4bg18",
+              "name": "Volumes - NYC1",
+              "old_status": "operational",
+              "new_status": "operational"
+            },
+            {
+              "code": "fkzl92xwpwc9",
+              "name": "Volumes - NYC3",
+              "old_status": "operational",
+              "new_status": "operational"
+            },
+            {
+              "code": "q7b6ftmzs9m9",
+              "name": "Volumes - SGP1",
+              "old_status": "operational",
+              "new_status": "operational"
+            },
+            {
+              "code": "4q7xqwryx8rd",
+              "name": "Volumes - SYD1",
+              "old_status": "operational",
+              "new_status": "operational"
+            }
+          ],
+          "deliver_notifications": true,
+          "custom_tweet": null,
+          "tweet_id": null
+        },
+        {
+          "id": "cmx87x1jsb5n",
+          "status": "monitoring",
+          "body": "Our Engineering team has identified the root cause of the issue preventing volume attachments to Droplets in NYC1, NYC3, SGP1, SYD1, and BLR1 and has successfully implemented a fix. You should now be able to attach volumes to your Droplet(s) without encountering any further errors or issues.\n\nWe are actively monitoring the situation to ensure the fix remains effective and will provide another update once the issue has been fully resolved.",
+          "incident_id": "84v7d9gkkzzf",
+          "created_at": "2026-07-19T14:52:16.246Z",
+          "updated_at": "2026-07-19T14:52:16.246Z",
+          "display_at": "2026-07-19T14:52:16.246Z",
+          "affected_components": [
+            {
+              "code": "6xz356g340vj",
+              "name": "Volumes - BLR1",
+              "old_status": "degraded_performance",
+              "new_status": "operational"
+            },
+            {
+              "code": "p4l05gv4bg18",
+              "name": "Volumes - NYC1",
+              "old_status": "degraded_performance",
+              "new_status": "operational"
+            },
+            {
+              "code": "fkzl92xwpwc9",
+              "name": "Volumes - NYC3",
+              "old_status": "degraded_performance",
+              "new_status": "operational"
+            },
+            {
+              "code": "q7b6ftmzs9m9",
+              "name": "Volumes - SGP1",
+              "old_status": "degraded_performance",
+              "new_status": "operational"
+            },
+            {
+              "code": "4q7xqwryx8rd",
+              "name": "Volumes - SYD1",
+              "old_status": "degraded_performance",
+              "new_status": "operational"
+            }
+          ],
+          "deliver_notifications": true,
+          "custom_tweet": null,
+          "tweet_id": null
+        },
+        {
+          "id": "h50wphcdwxs0",
+          "status": "investigating",
+          "body": "We are continuing to investigate this issue.",
+          "incident_id": "84v7d9gkkzzf",
+          "created_at": "2026-07-19T13:36:11.089Z",
+          "updated_at": "2026-07-19T13:36:11.089Z",
+          "display_at": "2026-07-19T13:36:11.089Z",
+          "affected_components": [
+            {
+              "code": "6xz356g340vj",
+              "name": "Volumes - BLR1",
+              "old_status": "operational",
+              "new_status": "degraded_performance"
+            },
+            {
+              "code": "p4l05gv4bg18",
+              "name": "Volumes - NYC1",
+              "old_status": "degraded_performance",
+              "new_status": "degraded_performance"
+            },
+            {
+              "code": "fkzl92xwpwc9",
+              "name": "Volumes - NYC3",
+              "old_status": "degraded_performance",
+              "new_status": "degraded_performance"
+            },
+            {
+              "code": "q7b6ftmzs9m9",
+              "name": "Volumes - SGP1",
+              "old_status": "operational",
+              "new_status": "degraded_performance"
+            },
+            {
+              "code": "4q7xqwryx8rd",
+              "name": "Volumes - SYD1",
+              "old_status": "operational",
+              "new_status": "degraded_performance"
+            }
+          ],
+          "deliver_notifications": true,
+          "custom_tweet": null,
+          "tweet_id": null
+        }
+      ],
+      "components": [
+        {
+          "id": "6xz356g340vj",
+          "name": "BLR1",
+          "status": "operational",
+          "created_at": "2023-02-18T01:32:32.003Z",
+          "updated_at": "2026-07-19T14:52:16.125Z",
+          "position": 5,
+          "description": null,
+          "showcase": false,
+          "start_date": "2023-02-18",
+          "group_id": "hjz5ry9b7nl6",
+          "page_id": "w4cz49tckxhp",
+          "group": false,
+          "only_show_if_degraded": false
+        },
+        {
+          "id": "p4l05gv4bg18",
+          "name": "NYC1",
+          "status": "operational",
+          "created_at": "2023-02-18T01:32:31.701Z",
+          "updated_at": "2026-07-19T14:52:16.145Z",
+          "position": 9,
+          "description": null,
+          "showcase": false,
+          "start_date": "2023-02-18",
+          "group_id": "hjz5ry9b7nl6",
+          "page_id": "w4cz49tckxhp",
+          "group": false,
+          "only_show_if_degraded": false
+        },
+        {
+          "id": "fkzl92xwpwc9",
+          "name": "NYC3",
+          "status": "operational",
+          "created_at": "2023-02-18T01:32:31.709Z",
+          "updated_at": "2026-07-19T14:52:16.164Z",
+          "position": 11,
+          "description": null,
+          "showcase": false,
+          "start_date": "2023-02-18",
+          "group_id": "hjz5ry9b7nl6",
+          "page_id": "w4cz49tckxhp",
+          "group": false,
+          "only_show_if_degraded": false
+        },
+        {
+          "id": "q7b6ftmzs9m9",
+          "name": "SGP1",
+          "status": "operational",
+          "created_at": "2023-02-18T01:32:31.602Z",
+          "updated_at": "2026-07-19T14:52:16.183Z",
+          "position": 16,
+          "description": null,
+          "showcase": false,
+          "start_date": "2023-02-18",
+          "group_id": "hjz5ry9b7nl6",
+          "page_id": "w4cz49tckxhp",
+          "group": false,
+          "only_show_if_degraded": false
+        },
+        {
+          "id": "4q7xqwryx8rd",
+          "name": "SYD1",
+          "status": "operational",
+          "created_at": "2023-02-18T01:32:31.832Z",
+          "updated_at": "2026-07-19T14:52:16.203Z",
+          "position": 17,
+          "description": null,
+          "showcase": false,
+          "start_date": "2023-02-18",
+          "group_id": "hjz5ry9b7nl6",
+          "page_id": "w4cz49tckxhp",
+          "group": false,
+          "only_show_if_degraded": false
+        }
+      ],
+      "reminder_intervals": null
+    },
+    {
+      "id": "synthetic0001",
+      "name": "Networking degradation (synthetic fixture)",
+      "status": "postmortem",
+      "created_at": "2026-08-24T17:14:43.701Z",
+      "updated_at": "2026-09-15T19:11:53.801Z",
+      "monitoring_at": "2026-08-24T19:14:18.846Z",
+      "resolved_at": "2026-08-25T19:04:33.091Z",
+      "impact": "major",
+      "shortlink": "https://stspg.io/8l5c24cxh3hr",
+      "started_at": "2026-08-24T17:14:43.692Z",
+      "page_id": "w4cz49tckxhp",
+      "incident_updates": [
+        {
+          "id": "2sv33jgdp5b9",
+          "status": "postmortem",
+          "body": "Synthetic fixture: engineers are investigating packet loss affecting Droplets in the SYD1 region.",
+          "incident_id": "4qwm6pzlx1z3",
+          "created_at": "2026-09-15T18:44:45.445Z",
+          "updated_at": "2026-09-15T19:11:53.799Z",
+          "display_at": null,
+          "affected_components": [],
+          "deliver_notifications": true,
+          "custom_tweet": "We published a postmortem on our August 24th incident: https://stspg.io/8l5c24cxh3hr",
+          "tweet_id": null
+        }
+      ],
+      "components": [],
+      "reminder_intervals": null
+    }
+  ]
+}

@@ -1,0 +1,13 @@
+{
+    "key": "announcements",
+    "name": "Announcements",
+    "code": "ann",
+    "tier": "plugin",
+    "className": "Announcements\\Module",
+    "surface": "backend",
+    "menu": "menu.php",
+    "migrations": "migrations",
+    "license": {
+        "keyRequired": false
+    }
+}

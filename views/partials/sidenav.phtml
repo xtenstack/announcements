@@ -1,0 +1,80 @@
+<?php
+/** @var \Phalcon\Mvc\View\Engine\Php $this */
+/** @var string $controllerName */
+
+$menu   = $this->moduleManager->mergedMenu('backend');
+$roleId = $this->session->get('auth')['role_id'] ?? null;
+
+$visible = array_values(array_filter(
+    $menu,
+    fn ($item) => $item['roles'] === null || in_array($roleId, $item['roles'], true)
+));
+
+// Bucket into groups, preserving each group's first-appearance position
+// in the menu so grouping doesn't reorder anything relative to the
+// items around it. Ungrouped items keep their own top-level slot.
+$rendered = [];
+$groups   = [];
+
+foreach ($visible as $item) {
+    $group = $item['group'] ?? null;
+
+    if ($group === null) {
+        $rendered[] = ['type' => 'item', 'item' => $item];
+        continue;
+    }
+
+    if (!isset($groups[$group])) {
+        $groups[$group] = [];
+        $rendered[]      = ['type' => 'group', 'label' => $group];
+    }
+
+    $groups[$group][] = $item;
+}
+?>
+<aside class="main-sidebar sidebar-dark-primary elevation-4">
+  <a href="<?= $this->url->get('backend') ?>" class="brand-link">
+    <span class="brand-text font-weight-light"><?= $this->escaper->escapeHtml($this->settings->get('site_name', 'App Skeleton')) ?></span>
+  </a>
+  <div class="sidebar">
+    <nav class="mt-2">
+      <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu">
+<?php foreach ($rendered as $entry): ?>
+<?php if ($entry['type'] === 'item'): ?>
+<?php $item = $entry['item']; ?>
+        <li class="nav-item">
+          <a href="<?= $this->url->get($item['url']) ?>" class="nav-link <?= $controllerName === $item['controller'] ? 'active' : '' ?>">
+            <i class="nav-icon <?= $item['icon'] ?>"></i>
+            <p><?= $this->escaper->escapeHtml($item['label']) ?></p>
+          </a>
+        </li>
+<?php else: ?>
+<?php
+  $children   = $groups[$entry['label']];
+  $groupActive = in_array($controllerName, array_column($children, 'controller'), true);
+?>
+        <li class="nav-item has-treeview <?= $groupActive ? 'menu-open' : '' ?>">
+          <a href="#" class="nav-link <?= $groupActive ? 'active' : '' ?>">
+            <i class="nav-icon <?= $children[0]['icon'] ?>"></i>
+            <p>
+              <?= $this->escaper->escapeHtml($entry['label']) ?>
+              <i class="right fas fa-angle-left"></i>
+            </p>
+          </a>
+          <ul class="nav nav-treeview">
+<?php foreach ($children as $item): ?>
+            <li class="nav-item">
+              <a href="<?= $this->url->get($item['url']) ?>" class="nav-link <?= $controllerName === $item['controller'] ? 'active' : '' ?>">
+                <i class="nav-icon <?= $item['icon'] ?>"></i>
+                <p><?= $this->escaper->escapeHtml($item['label']) ?></p>
+              </a>
+            </li>
+<?php endforeach; ?>
+          </ul>
+        </li>
+<?php endif; ?>
+<?php endforeach; ?>
+      </ul>
+    </nav>
+  </div>
+</aside>

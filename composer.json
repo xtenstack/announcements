@@ -1,0 +1,17 @@
+{
+    "name": "xtendeploy/announcements",
+    "description": "Announcements plugin: a single company-wide notice feed (policy changes, maintenance windows, anything staff and agents should factor into their own routines), readable by any staff/agent principal and publishable by admins.",
+    "type": "library",
+    "license": "MIT",
+    "minimum-stability": "dev",
+    "require": {
+        "php": "^8.3",
+        "league/commonmark": "^2.4"
+    },
+    "autoload": {
+        "psr-4": {
+            "Announcements\\": "src/",
+            "App_skeleton\\Modules\\Cli\\Tasks\\": "src/tasks/"
+        }
+    }
+}
