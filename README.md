@@ -115,3 +115,9 @@ shipped providers' status pages (25 September 2026) for the unit suite.
 ## Changes
 
 See `CHANGELOG.md`.
+
+## Licence, Trademarks & Statutory Notice
+
+- **Open-Source Licence:** The source code in this repository is licensed under the [MIT License](LICENSE). No licence key is required.
+- **Trademarks & No Endorsement:** The MIT copyright licence does not grant any right to use the names **"XTen"**, **"XTen.Stack"**, **"XTen.Deploy"**, **"biolDEx"**, or any XTen logos, trade dress, or service marks, except as reasonably necessary for factual attribution of origin. You must not state or imply that XTen endorses, certifies, or supports any modified or redistributed version of this software.
+- **Warranty & Australian Consumer Law:** This module is provided free of charge on an "as-is" basis without included commercial support (paid support plans are available separately at https://deploy.xten.au). Nothing in the MIT License or this notice excludes, restricts, or modifies any right or remedy that cannot lawfully be excluded under applicable law, including the Australian Consumer Law where applicable.

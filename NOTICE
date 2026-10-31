@@ -15,3 +15,8 @@ app_skeleton (MIT), PHP (PHP License) and the Phalcon framework
 (BSD-3-Clause). tests/fixtures/statuspage/ holds public JSON responses of
 status.digitalocean.com and www.ionos-status.co.uk, recorded 25 September
 2026 as test data; the content remains those providers'.
+
+Nothing in the MIT License or this notice excludes, restricts, or modifies
+any right or remedy that cannot lawfully be excluded under applicable law,
+including the Australian Consumer Law where applicable. Paid support plans
+are available separately at https://deploy.xten.au.
